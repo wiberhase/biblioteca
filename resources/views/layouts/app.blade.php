@@ -20,12 +20,25 @@
             }
         </script>
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+    <body class="font-sans antialiased text-gray-900">
+        
+        {{-- 1. FONDO FIJO PARA TODA LA APP --}}
+        {{-- Esto pone la imagen detrás de todo y le aplica el efecto borroso --}}
+        <div class="fixed inset-0 -z-50 bg-center bg-cover bg-no-repeat" 
+             style="background-image: url('{{ asset('images/fondo.jpg') }}');">
+            {{-- Capa de superposición para que se lea el texto (blanco en día, negro en noche) --}}
+            <div class="absolute inset-0 bg-white/60 dark:bg-gray-900/85 backdrop-blur-sm transition-colors duration-500"></div>
+        </div>
+
+        {{-- 2. CONTENEDOR PRINCIPAL --}}
+        {{-- Quitamos bg-gray-100 para que sea transparente --}}
+        <div class="min-h-screen relative">
+            
             @include('layouts.navigation')
 
             @isset($header)
-                <header class="bg-white dark:bg-gray-800 shadow transition-colors duration-300">
+                {{-- Header con efecto Glass (transparente) en lugar de blanco sólido --}}
+                <header class="bg-white/40 dark:bg-gray-800/40 backdrop-blur-md border-b border-white/20 dark:border-gray-700/30 shadow-sm transition-colors duration-300">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
